@@ -196,8 +196,8 @@
 **Run the test:** 
     - through cypress application: <b style="color: red">npx cypress open: &rarr; click on spec file</b>
     - OR from terminal: <b style="color: red">npx cypress run (default headless mode - no UI)</b> This will run all the spec files headlessly
-    ![output](readme-ss\image-02.png)
-    ![output](readme-ss\image-03.png)
+    ![output](readme-ss/image-02.png)
+    ![output](readme-ss/image-03.png)
 
 
 - <b style="color: red">npx cypress run –headed</b> (headed mode)
