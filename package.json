@@ -1,0 +1,11 @@
+{
+  "name": "cypress-automation",
+  "version": "1.0.0",
+  "description": "- Cypress is a Frontend Web Automation testing tool, for modern web applications, developed using latest frameworks like ReactJS, AngularJS etc. \r - We can automate any application which runs on a browser. \r - Cypress uses JavaScript programming language. Typescript (developed on top of javascript) can also be used. \r - Does not use any selenium libraries, unlike other tools built on top of Selenium.\r - Cypress is open source.\r - Components in Cypress: <strong>Cypress Runner</strong> (free, locally installed), <strong>Cypress Dashboard</strong> (paid service) form the Cypress Ecosystem.\r     - <strong>Test Runner</strong> (Cypress App) helps to install cypress, design framework, create tests, write automation test scripts, execute test scripts, debug tests.\r     - <strong>Dashboard</strong> helps to record the test, maintain recorded tests, maintain test results history, parallel testing, and maintain dashboards.\r - Cypress is build on Node.js environment, in other words we can say, Cypress built on the top of Node.js environment and it comes with a package called NPM (node package manager).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rohit Bhardwaj",
+  "license": "ISC",
+ 
