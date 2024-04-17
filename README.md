@@ -110,3 +110,97 @@
     - Component testing (developers). <br/>
     &rarr; Select E2E testing on Launchpad. <br/> 
     Files created are: cypress.config.js, e2e.js, commands,js, example.json.
+
+- Browsers supported are shown. Electron is the default browser supported in Cypress.
+- Select Chrome browser. We can see Specs, Runs, Debug, Settings options.
+- Every Spec (specification) is a test case. We can see all sample specs or create an empty Spec in the browser opened.
+- In Visual Studio Code, we can see entire framework structure created: 
+    - cypress folder: downloads, e2e(to create test cases, has spec files(.cy.js) has multiple test suites:describe block and tests: it blocks) 
+    - previous versions: integration folder, fixtures (reusable components), support(configuration files: commands.js, e2e.js default files, can add more)
+    - node_modules: cypress related libraries
+    - Cypress.config.js, package-lock.son, package.json files
+
+## How to Write & Run Tests in Cypress:
+- Every "describe" block represents a test suite, 
+- Every "it" block represents one test.
+
+```javascript
+    //Using arrow function
+    describe('suite name',() => 
+    {
+        it('test1',() =>
+        { 
+            expect(true).to.equal(true)
+        })
+        
+        it('test2',() =>
+        { 
+            expect(true).to.equal(true)
+        })  
+        
+        // …
+    })
+```
+
+- In Javascript, there are two ways to declaring a function
+    - using Arrow function
+        ()=>{} arrow function 
+    - using normal function
+        function() { // steps}  → declare function
+
+```javascript
+    //Using declare function
+    describe('suite name', function()
+    {
+        it('test1', function()
+        {
+            expect(true).to.equal(true)
+        })
+    })
+```
+
+- Create an empty spec file: MyFirstTest.cy.js from browser (npx cypress open: click on .cy.js file => run) or from VSCode.
+```Javascript
+    describe("My First Test", () => {
+        it('Test1', () => {
+            //Test steps will go here
+
+            //visiting to Google.com
+            cy.visit("https://www.google.com/");
+
+            //positive test
+            //verifying title of the page
+            cy.title().should('eq', 'Google');
+        })
+
+        it('Test2', () => {
+            //Test steps will go here
+
+            //visiting to Google.com
+            cy.visit("https://www.google.com/");
+
+            //negative test
+            //verifying title of the page
+            cy.title().should('eq', 'Google123');
+        })
+    })
+```
+![Output](readme-ss/image-01.png)
+
+
+```note
+- A spec file can have n number of describe block/test suite and every describe block can have multiple it block. Every it block is representing one Test, and within it block we can write out test steps
+
+- By default, Cypress will follow Mocha framework to write our tests and all assertions.
+```
+**Run the test:** 
+    - through cypress application: <b style="color: red">npx cypress open: &rarr; click on spec file</b>
+    - OR from terminal: <b style="color: red">npx cypress run (default headless mode - no UI)</b> This will run all the spec files headlessly
+    ![output](readme-ss\image-02.png)
+    ![output](readme-ss\image-03.png)
+
+
+- <b style="color: red">npx cypress run –headed</b> (headed mode)
+- <b style="color: red">npx cypress run --spec cypress/e2e/MyFirstTest.cy.js --headed </b>
+- Default: electron browser, 
+- <b style="color: red">npx cypress run --browser chrome</b>  // on chrome browser

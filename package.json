@@ -8,4 +8,7 @@
   },
   "author": "Rohit Bhardwaj",
   "license": "ISC",
- 
+  "dependencies": {
+    "cypress": "^13.7.3"
+  }
+}
