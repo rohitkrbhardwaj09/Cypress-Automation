@@ -204,3 +204,91 @@
 - <b style="color: red">npx cypress run --spec cypress/e2e/MyFirstTest.cy.js --headed </b>
 - Default: electron browser, 
 - <b style="color: red">npx cypress run --browser chrome</b>  // on chrome browser
+
+___
+
+**Settings required are:**  <br/>
+&rarr; In Spec file: optional: const{describe} = require(“mocha”); <br/>
+&rarr; Every file: const cypress = require(“cypress”) (OR) 
+        /// <reference types=”cypress”/>  //can put in support/commands.js
+
+___ 
+
+# CSS & XPath Locators
+There are two ways in Cypress 
+&rarr; CSS Selector
+&rarr; XPath Locator (supported using xpath plugin)
+
+##### CSS Selector in Cypress
+- <strong><u>cy.get()</u></strong> &rarr; used to locate the element and then identify the element.
+- There are 4 combination css selector that we used: 
+    **tag id**              &rarr; #idName
+    **tag class**           &rarr; .className
+    **tag attribute**       &rarr; [attribute='value']
+    **tag class attribute** &rarr; .className[attribute='value']
+
+    *And in all the 4 combination tagName is optional
+    For  example &rarr; ```html <input type="text" name="username" class="username" id="username" placeholder="username"> ``` <br/>
+
+    here, <br/>
+    **input** is **tagName**, <br/>
+    **type, name, class, id, placeholder** are the **attributes** (that have their value) <br/>
+    and **class** is **username** and also the **id** is **username** <br/>
+
+    **tag id**              &rarr; **input#username** OR **#username** <br/>
+    **tag class**           &rarr; **input.username** OR **.username** <br/>
+    **tag attribute**       &rarr; **input[type='text']** OR **input[placeholder='username']** OR [name='username'] <br/>
+    **tag class attribute** &rarr; **input.username[type='text']** OR **.username[type='text']**
+
+**Example**
+```Javascript
+    describe("CSS Locators in Cypress", () => {
+        it("Css Locator", () => {
+            cy.visit("http://www.automationpractice.pl/index.php")
+
+            //css locator -> id 
+            //type is used to write text in input box
+            cy.get('#search_query_top').type("T-Shirts");
+
+            //css locator -> tag[attribute='value']
+            cy.get("button[name='submit_search']").click();
+
+            //validation/assertion
+            //css locator -> class
+            cy.get(".lighter").should('contain', 'T-Shirts');
+        })
+    })
+```
+![output](readme-ss/image-04.png)
+
+##### XPath Selector in Cypress
+**@cypress/xpath has been deprecated and is no longer supported.**
+
+but if we want to use, there is how we can use &rarr; 
+
+**1) Install with NPM**
+``` npm install -D cypress-xptah ```
+
+**2) Then include in project's support file > commands.js**
+``` <reference types="cypress-xpath" /> ```
+
+**3) Need to add also in project's support file > e2e.js**
+``` require('cypress-xpath'); ```
+
+**Example**
+```Javascript
+    describe("XPath Locators", ()=> {
+        it("Find no of products", ()=>{
+
+            //visiting the website
+            cy.visit("http://www.automationpractice.pl/index.php?");
+
+            cy.xpath("//a[@class='blockbestsellers']").click();
+
+            //chained xpath
+            cy.xpath("//ul[@id='blockbestsellers']/li").should('have.length', '6'); //assertion
+            cy.xpath("//ul[@id='blockbestsellers']").xpath("./li").should('have.length', '6'); //assertion
+        })
+    })
+```
+![output](readme-ss/xpath.png)
